@@ -7,4 +7,5 @@ export type ProductModel = {
     stock_available: number;
     is_favorite: boolean;
     category_id_list: string[];
+    deleted_at: string | null;
 }
