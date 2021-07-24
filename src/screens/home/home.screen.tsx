@@ -130,7 +130,7 @@ const HomeScreen = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {products.filter(t => t.deleted_at === null && t.is_favorite).map(product => (
+                    {products.filter(t => t.deleted_at === null).map(product => (
                         <tr key={product.id}>
                             <td style={{border: '1px solid #000'}}>
                                 {product.image &&
