@@ -1,5 +1,6 @@
 import React, {lazy, Suspense} from 'react';
 import {BrowserRouter, Link, Route, Switch} from 'react-router-dom';
+import './styles/app.css';
 
 const HomeScreen = lazy(() => import('./screens/home/home.screen'));
 const ProductScreen = lazy(() => import('./screens/product/product.screen'));
@@ -7,7 +8,7 @@ const CategoryScreen = lazy(() => import('./screens/category/category.screen'));
 
 const App = () => {
     return (
-        <div>
+        <div style={{width: '100%', height: '100%'}}>
             <Suspense fallback={
                 <>
                     <h1>Yükleniyor...</h1>

@@ -1,14 +1,12 @@
 import React, {useCallback, useState} from 'react';
 import {useProduct} from '../../store/product/hooks';
 import {useCart} from '../../store/cart/hooks';
-import {useCategory} from '../../store/category/hooks';
 import {ProductModel} from '../../models/product.model';
 import {CartItemModel} from '../../models/cart.model';
 import {BatchUpdateStockType} from '../../store/product/types';
 
 const HomeScreen = () => {
     const {products, batchUpdateStock} = useProduct();
-    const {categories} = useCategory();
     const {total, items, addItem, deleteItem, updateItem, clear} = useCart();
     const [selectedProduct, setSelectedProduct] = useState<ProductModel | null>(null);
     const [quantity, setQuantity] = useState(1);
@@ -73,7 +71,7 @@ const HomeScreen = () => {
                     </>
                 )}
             </fieldset>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
+            <div style={{display: 'flex', flexDirection: 'row', height: '100%'}}>
                 <table style={{width: '50%', borderCollapse: 'collapse', textAlign: 'left', marginTop: '12px'}}>
                     <thead>
                     <tr>
