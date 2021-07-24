@@ -18,7 +18,7 @@ const HomeScreen = () => {
             setSelectedProduct(product);
         }
         setQuantity(1);
-    }, []);
+    }, [selectedProduct]);
 
     const addToCart = useCallback(() => {
         if (selectedProduct) {
