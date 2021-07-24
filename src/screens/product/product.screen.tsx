@@ -50,8 +50,8 @@ const ProductScreen = () => {
             <fieldset>
                 <legend>Ürün</legend>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div style={{display: 'flex', flexDirection: 'row'}}>
-                        <label style={{display: 'flex', flexDirection: 'column'}}>
+                    <div style={{display: 'flex', flexDirection: 'row', marginBottom: '12px'}}>
+                        <label style={{display: 'flex', flexDirection: 'column', marginRight: '6px'}}>
                             <span>İsim</span>
                             <input type="text" {...register('name', {required: true})} />
                         </label>
@@ -60,8 +60,8 @@ const ProductScreen = () => {
                             <input type="text" {...register('barcode', {required: false})} />
                         </label>
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'row'}}>
-                        <label style={{display: 'flex', flexDirection: 'column'}}>
+                    <div style={{display: 'flex', flexDirection: 'row', marginBottom: '12px'}}>
+                        <label style={{display: 'flex', flexDirection: 'column', marginRight: '6px'}}>
                             <span>Fiyat</span>
                             <input type="number" step="0.01" min="0" {...register('price', {
                                 required: true,
@@ -77,10 +77,16 @@ const ProductScreen = () => {
                             })} />
                         </label>
                     </div>
-                    <label>
-                        <span>Favori Ürün mü?</span>
-                        <input type="checkbox" {...register('is_favorite')} />
-                    </label>
+                    <div style={{display: 'flex', flexDirection: 'row', marginBottom: '12px'}}>
+                        <label style={{display: 'flex', flexDirection: 'column', marginRight: '6px'}}>
+                            <span>Resim</span>
+                            <input type="text" {...register('image', {required: false})} />
+                        </label>
+                        <label style={{display: 'flex', flexDirection: 'column'}}>
+                            <span>Favori Ürün mü?</span>
+                            <input type="checkbox" {...register('is_favorite')} />
+                        </label>
+                    </div>
                     <button type="submit">Kaydet</button>
                     {selectedProduct && (
                         selectedProduct.deleted_at === null ? (
@@ -95,14 +101,15 @@ const ProductScreen = () => {
                     )}
                 </form>
             </fieldset>
-            <table>
+            <table style={{width: '100%', borderCollapse: 'collapse', textAlign: 'left', marginTop: '12px'}}>
                 <thead>
                 <tr>
-                    <th>Barkod</th>
-                    <th>İsim</th>
-                    <th>Fiyat</th>
-                    <th>Stok</th>
-                    <th>
+                    <th style={{border: '1px solid #000'}}/>
+                    <th style={{border: '1px solid #000'}}>Barkod</th>
+                    <th style={{border: '1px solid #000'}}>İsim</th>
+                    <th style={{border: '1px solid #000'}}>Fiyat</th>
+                    <th style={{border: '1px solid #000'}}>Stok</th>
+                    <th style={{border: '1px solid #000'}}>
                         <button type="button" onClick={() => setShowDeleted(!showDeleted)}>
                             {!showDeleted && <span>Çöp Kutusu</span>}
                             {showDeleted && <span>Ürünler</span>}
@@ -113,11 +120,15 @@ const ProductScreen = () => {
                 <tbody>
                 {products.filter(t => showDeleted ? (t.deleted_at !== null) : t.deleted_at === null).map(product => (
                     <tr key={product.id}>
-                        <td>{product.barcode}</td>
-                        <td>{product.name}</td>
-                        <td>{product.price}</td>
-                        <td>{product.stock_available}</td>
-                        <td>
+                        <td style={{border: '1px solid #000'}}>
+                            {product.image &&
+                            <img src={product.image} alt={product.name} style={{width: '64px', height: '64px'}}/>}
+                        </td>
+                        <td style={{border: '1px solid #000'}}>{product.barcode}</td>
+                        <td style={{border: '1px solid #000'}}>{product.name}</td>
+                        <td style={{border: '1px solid #000'}}>{product.price}</td>
+                        <td style={{border: '1px solid #000'}}>{product.stock_available}</td>
+                        <td style={{border: '1px solid #000'}}>
                             <button type="button" onClick={() => selectProduct(product)}>
                                 Seç
                             </button>
