@@ -13,7 +13,7 @@ export const productReducer = listReducer<ProductModel>({
     deleteAction: deleteProductAction,
     updateAction: updateProductAction,
     extra: (handle) => [
-        handle(batchUpdateStockAction, (state, payload) => {
+        handle(batchUpdateStockAction, (state, {payload}) => {
             const batch = payload.batch as BatchUpdateStockType;
             batch.forEach(({id, stock}) => {
                 const found = state.list.find(item => item.id === id);
