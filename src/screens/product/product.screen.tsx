@@ -2,11 +2,13 @@ import React, {useCallback, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {ProductModel} from '../../models/product.model';
 import {useProduct} from '../../store/product/hooks';
+import {useCategory} from '../../store/category/hooks';
 
 const ProductScreen = () => {
     const [showDeleted, setShowDeleted] = useState<boolean>(false);
     const [selectedProduct, setSelectedProduct] = useState<ProductModel | null>(null);
     const {products, addProduct, updateProduct, deleteProduct} = useProduct();
+    const {categories} = useCategory();
     const {register, handleSubmit, reset} = useForm();
 
     const onSubmit = useCallback((data: ProductModel) => {
@@ -85,6 +87,16 @@ const ProductScreen = () => {
                         <label style={{display: 'flex', flexDirection: 'column'}}>
                             <span>Favori Ürün mü?</span>
                             <input type="checkbox" {...register('is_favorite')} />
+                        </label>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', marginBottom: '12px'}}>
+                        <label style={{display: 'flex', flexDirection: 'column', marginRight: '6px'}}>
+                            <span>Kategoriler</span>
+                            <select multiple {...register('category_id_list')}>
+                                {categories.map(category =>
+                                    <option key={category.id} value={category.id}>{category.name}</option>,
+                                )}
+                            </select>
                         </label>
                     </div>
                     <button type="submit">Kaydet</button>

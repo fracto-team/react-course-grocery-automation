@@ -1,5 +1,6 @@
-export type ProductModel = {
-    id: string;
+import {BaseModel} from './base.model';
+
+export interface ProductModel extends BaseModel {
     name: string;
     price: number;
     image: string | null;
@@ -7,5 +8,4 @@ export type ProductModel = {
     stock_available: number;
     is_favorite: boolean;
     category_id_list: string[];
-    deleted_at: string | null;
 }
