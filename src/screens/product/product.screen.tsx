@@ -15,7 +15,7 @@ const ProductScreen = () => {
         if (selectedProduct) {
             updateProduct(selectedProduct.id, data);
         } else {
-            addProduct(data);
+            addProduct({...data, deleted_at: null});
         }
         setSelectedProduct(null);
         reset({});
