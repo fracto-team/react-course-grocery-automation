@@ -48,7 +48,6 @@ const CategoryScreen = () => {
 
     const colorChanged = useCallback((color: ColorResult) => {
         setValue('color', color.hex);
-        console.log({color});
     }, [setValue]);
 
     return (
