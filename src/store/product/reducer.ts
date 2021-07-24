@@ -15,16 +15,16 @@ export const productReducer = listReducer<ProductModel>({
     extra: (handle) => [
         handle(batchUpdateStockAction, (state, {payload}) => {
             const batch = payload.batch as BatchUpdateStockType;
-            batch.forEach(({id, stock}) => {
-                const found = state.list.find(item => item.id === id);
-                if (found) {
-                    state = {
-                        ...state,
-                        list: [...state.list.filter(item => item.id !== id), {...found, stock_available: stock}],
-                    };
-                }
-            });
-            return state;
+            return {
+                ...state,
+                list: state.list.map(item => {
+                    const batchItem = batch.find(b => b.id === item.id);
+                    if (batchItem) {
+                        return {...item, stock_available: batchItem.stock};
+                    }
+                    return item;
+                }),
+            };
         }),
     ],
 });
