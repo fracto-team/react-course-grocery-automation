@@ -12,4 +12,5 @@ export const categoryReducer = listReducer<CategoryModel>({
     addAction: addCategoryAction,
     deleteAction: deleteCategoryAction,
     updateAction: updateCategoryAction,
+    extra: () => [],
 });
